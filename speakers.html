@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speakers | ICECA 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --green-deep: #023c2c;
+      --green-dark: #046444;
+      --green-main: #009b63;
+      --green-card: #f0fff6;
+      --gold: #f4b63f;
+      --gold-dark: #d99b24;
+      --text-dark: #07251c;
+      --text-muted: #49675b;
+      --border: #a7e7c2;
+      --white: #ffffff;
+      --bg: #dffbea;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      background: linear-gradient(135deg, var(--green-deep), var(--green-dark) 60%, var(--green-main));
+      color: var(--white);
+      font-size: 14px;
+    }
+
+    .top-bar .container {
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(232, 255, 241, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .logo-strip {
+      padding: 18px 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .logo-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 108px;
+    }
+
+    .logo-img {
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .auw-logo { max-height: 128px; }
+    .program-logo { max-height: 156px; }
+    .gbm-logo { max-height: 140px; }
+
+    .nav-content {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-top: 1px solid rgba(207, 232, 218, 0.7);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 64px;
+      height: 64px;
+      background: transparent;
+      border: none;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      overflow: visible;
+      box-shadow: none;
+    }
+
+    .brand-icon img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+    }
+
+    .brand h1 {
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .brand p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--green-main);
+    }
+
+    .old-link {
+      background: linear-gradient(135deg, var(--gold), #ffcc5c);
+      color: var(--white) !important;
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: 0.2s ease;
+    }
+
+    .old-link:hover {
+      background: var(--gold-dark);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      font-size: 18px;
+      color: var(--text-dark);
+      cursor: pointer;
+    }
+
+    .section-padding {
+      padding: 86px 0;
+    }
+
+    .category-block {
+      margin-bottom: 64px;
+    }
+
+    .category-title {
+      background: transparent;
+      color: var(--text-dark);
+      border-left: 6px solid var(--green-main);
+      padding: 8px 0 8px 20px;
+      margin-bottom: 28px;
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    .category-title h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .speakers-grid.one-card {
+      grid-template-columns: minmax(280px, 420px);
+    }
+
+    .speaker-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(167, 231, 194, 0.85);
+      border-radius: 30px;
+      padding: 30px;
+      box-shadow: 0 18px 45px rgba(2, 60, 44, 0.10);
+      transition: 0.25s ease;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .speaker-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 7px;
+      background: linear-gradient(90deg, var(--green-deep), var(--green-main), var(--gold));
+    }
+
+    .speaker-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 58px rgba(2, 60, 44, 0.16);
+      border-color: var(--green-main);
+    }
+
+    .speaker-photo {
+      width: 118px;
+      height: 118px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e9fff2 0%, #b9f2d0 100%);
+      border: 4px solid #ffffff;
+      outline: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 155, 99, 0.14);
+    }
+
+    .speaker-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .speaker-card h3 {
+      font-size: 23px;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+    }
+
+    .speaker-title {
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .speaker-card p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .footer {
+      background: linear-gradient(135deg, var(--green-deep), var(--green-dark) 60%, var(--green-main));
+      color: var(--white);
+      padding: 56px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1.2fr;
+      gap: 36px;
+    }
+
+    .footer p,
+    .footer a {
+      color: #d1fae5;
+    }
+
+    .footer h3,
+    .footer h2 {
+      margin-bottom: 14px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    @media (max-width: 1000px) {
+      .nav-links {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 236px;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 4%;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .logo-strip {
+        min-height: auto;
+        gap: 16px;
+      }
+
+      .auw-logo { max-height: 96px; }
+      .program-logo { max-height: 112px; }
+      .gbm-logo { max-height: 102px; }
+
+      .speakers-grid,
+      .speakers-grid.one-card,
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .top-bar .container {
+        font-size: 13px;
+      }
+
+      .logo-strip {
+        padding: 14px 0 12px;
+        gap: 10px;
+      }
+
+      .logo-box {
+        min-height: 78px;
+      }
+
+      .auw-logo { max-height: 68px; }
+      .program-logo { max-height: 78px; }
+      .gbm-logo { max-height: 72px; }
+
+      .brand-icon,
+      .brand-icon img {
+        width: 52px;
+        height: 52px;
+      }
+
+      .nav-links {
+        top: 202px;
+      }
+
+      .section-padding {
+        padding: 64px 0;
+      }
+
+      .category-block {
+        margin-bottom: 48px;
+      }
+
+      .speaker-card {
+        border-radius: 24px;
+        padding: 26px;
+      }
+
+      .speaker-photo {
+        width: 104px;
+        height: 104px;
+      }
+
+      .speakers-grid,
+      .speakers-grid.one-card,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <p>Environmental Sciences Program, Asian University for Women</p>
+      <p>ICECA@auw.edu.bd</p>
+    </div>
+  </div>
+
+  <header class="navbar">
+    <div class="container logo-strip">
+      <div class="logo-box">
+        <img src="images/auw-logo.png" alt="Asian University for Women Logo" class="logo-img auw-logo">
+      </div>
+      <div class="logo-box center-logo">
+        <img src="images/program-logo.png" alt="ICECA 2026 Conference Logo" class="logo-img program-logo">
+      </div>
+      <div class="logo-box">
+        <img src="images/gbm-logo.png" alt="Green Bangle Movement Logo" class="logo-img gbm-logo">
+      </div>
+    </div>
+
+    <div class="container nav-content">
+      <a href="index.html" class="brand">
+        <div class="brand-icon image-brand">
+          <img src="images/program-logo.png" alt="ICECA 2026 Logo">
+        </div>
+        <div>
+          <h1>ICECA 2026</h1>
+          <p>Environment & Climate Action</p>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="travel-stay.html">Travel & Stay</a>
+        <a href="themes.html">Themes & Schedule</a>
+        <a href="speakers.html" class="active">Speakers</a>
+        <a href="committee.html">Committee</a>
+        <a href="contact.html">Contact</a>
+        <a class="old-link" href="https://iceca.auw.edu.bd/" target="_blank">ICECA 2025</a>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-padding">
+      <div class="container">
+
+        <div class="category-block">
+          <div class="category-title">
+            <h2>Plenary Speaker</h2>
+          </div>
+          <div class="speakers-grid one-card">
+            <article class="speaker-card">
+              <div class="speaker-photo">Photo</div>
+              <h3>Farhana Sultana</h3>
+              <div class="speaker-title">Professor of Geography, Syracuse University</div>
+              <p>Her research considers how water management and climate change impact society.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="category-block">
+          <div class="category-title">
+            <h2>Keynote Speakers</h2>
+          </div>
+          <div class="speakers-grid">
+            <article class="speaker-card">
+              <div class="speaker-photo">Photo</div>
+              <h3>Nancy Mock</h3>
+              <div class="speaker-title">International Development Professional</div>
+              <p>Has nearly 40 years of professional experience in more than 30 countries, including work in disaster resilience, food security, nutrition, international health, and post-Katrina recovery.</p>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-photo">Photo</div>
+              <h3>Ainun Nishat</h3>
+              <div class="speaker-title">Emeritus Professor, BRAC University</div>
+              <p>A pioneering expert in water resource management and climate change in Bangladesh, former vice chancellor of BRAC, and adviser to C3ER.</p>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-photo">Photo</div>
+              <h3>Dr. Fahmida Khatun</h3>
+              <div class="speaker-title">Executive Director, Centre for Policy Dialogue</div>
+              <p>Her expertise includes macroeconomic policy, financial sector, international trade, climate change, environment, energy economics, digital economy, youth employment, LDC interests, and women’s contribution to the economy.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="category-block">
+          <div class="category-title">
+            <h2>Invited Speakers</h2>
+          </div>
+          <div class="speakers-grid">
+            <article class="speaker-card">
+              <div class="speaker-photo">Photo</div>
+              <h3>Tanzina Dilshad</h3>
+              <div class="speaker-title">Program Manager, Environment & Energy, European Union Delegation to Bangladesh</div>
+              <p>Works in environment and energy programming at the European Union Delegation to Bangladesh.</p>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-photo">Photo</div>
+              <h3>Alak Paul</h3>
+              <div class="speaker-title">Professor, Geography and Environmental Studies, University of Chittagong</div>
+              <p>Focuses on everyday geographies of marginalized and vulnerable people, especially how geographic space and place reshape lives and environments.</p>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-photo">Photo</div>
+              <h3>Douwe van Schie</h3>
+              <div class="speaker-title">PhD Candidate in Loss and Damage, University of Bonn</div>
+              <p>Works on non-economic loss and damage, social inequality, social and climate justice, capabilities, and intersectionality, focusing mainly on Bangladesh and Suriname.</p>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-photo">Photo</div>
+              <h3>Jan Freihardt</h3>
+              <div class="speaker-title">Postdoctoral Researcher, ETH Zurich</div>
+              <p>His current work focuses on climate migration and adaptation, as well as air quality monitoring in over-exploited urban areas.</p>
+            </article>
+
+            <article class="speaker-card">
+              <div class="speaker-photo">Photo</div>
+              <h3>Sadia Jahan Rothi</h3>
+              <div class="speaker-title">Environmental Management & Youth Engagement Specialist, C3ER, BRAC University</div>
+              <p>She is the first Climate Vulnerable Forum Youth Fellow from Bangladesh and has worked with youth and climate policy platforms including the UNFCCC youth constituency and Global Center on Adaptation.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="category-block">
+          <div class="category-title">
+            <h2>Other Speakers</h2>
+          </div>
+          <div class="speakers-grid">
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Ms Afrida Asad</h3><div class="speaker-title">Speaker details will be updated</div><p>Full designation, organization, and biography will be added later.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Masud Kamal</h3><div class="speaker-title">Associate Professor, Sociology, University of Chittagong</div><p>His work focuses on climate change adaptation, environmental governance, and just transitions.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Haseeb Irfanullah</h3><div class="speaker-title">Independent Consultant & Visiting Research Fellow, ULAB</div><p>His interests include nature-based solutions, environmental governance, climate change adaptation, technology for poverty alleviation, scholarly communication, and research impact.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Aruba Faruque</h3><div class="speaker-title">Deputy Executive Coordinator, YouthNet Global</div><p>A 19-year-old climate justice advocate championing climate justice, health, and education for a livable future.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Akib Jabed</h3><div class="speaker-title">PhD Candidate, Wageningen University</div><p>His interests include climate-induced losses and damages, nature-based solutions, marginalized communities, and public health.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Joydeb Garai</h3><div class="speaker-title">Associate Professor, Sociology, University of Chittagong</div><p>His areas include climate change adaptation, policy implication, Indigenous people and community development, disaster management, psychosocial work, and gender and development.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Md. Momenul Islam</h3><div class="speaker-title">Director, Bangladesh Meteorological Division</div><p>Speaker details and biography will be updated later.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Md. Jakariya</h3><div class="speaker-title">Professor, Department of Environmental Science and Management; Director, CDR</div><p>Professor in Environmental Science and Management and Director of the Center for Climate Change and Disaster Resilience.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>S.M. Manzoor Ahmed Hanifi</h3><div class="speaker-title">Scientist and Head of Climate Change, Health, and Population Science, icddr,b</div><p>Speaker details and biography will be updated later.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Md. Mizanur Rahman</h3><div class="speaker-title">Professor, Soil Science; Director, Institute of Climate Change and Environment</div><p>Professor at Bangabandhu Sheikh Mujibur Rahman Agricultural University and Director of ICCE, Gazipur Agricultural University.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Mohammad Mohinuzzaman</h3><div class="speaker-title">Department of Environmental Science and Disaster Management, NSTU</div><p>Affiliated with Noakhali Science and Technology University. Speaker biography will be updated later.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Dr. Tariq Bin Yousuf</h3><div class="speaker-title">Specialist in Solid Waste Management, Urban Resilience, and Environmental Engineering</div><p>Contributed to the Clean Dhaka Master Plan and urban resilience projects. Affiliated with CSIRS at UIU.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Iftekhar Enayetullah</h3><div class="speaker-title">Co-Founder and Director, Waste Concern</div><p>A pioneer in linking resource recovery and recycling to circular economy principles in Bangladesh.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Dr. Mst. Farzana Rahman Zuthi</h3><div class="speaker-title">Professor, Department of Civil Engineering, CUET</div><p>Her research spans water quality, wastewater treatment, solid and plastic waste management, and environmental health risk assessment.</p></article>
+            <article class="speaker-card"><div class="speaker-photo">Photo</div><h3>Md. Mozahidur Rahman</h3><div class="speaker-title">Deputy Director, DOE, Chittagong</div><p>Speaker details and biography will be updated later.</p></article>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div>
+        <h2>ICECA 2026</h2>
+        <p>2nd International Conference on Environment and Climate Action 2026.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <div class="footer-links">
+          <a href="https://iceca.auw.edu.bd/" target="_blank">ICECA 2025</a>
+          <a href="index.html#submission">Registration</a>
+          <a href="index.html#submission">Submission</a>
+        </div>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p><i class="fa-regular fa-envelope"></i> ICECA@auw.edu.bd</p>
+        <p>Environmental Sciences Program, Asian University for Women</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>

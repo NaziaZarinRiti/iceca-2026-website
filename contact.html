@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | ICECA 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    :root {
+      --green-deep: #023c2c;
+      --green-dark: #046444;
+      --green-main: #009b63;
+      --green-card: #f0fff6;
+      --gold: #f4b63f;
+      --gold-dark: #d99b24;
+      --text-dark: #07251c;
+      --text-muted: #49675b;
+      --border: #a7e7c2;
+      --white: #ffffff;
+      --bg: #dffbea;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    .top-bar {
+      background: linear-gradient(135deg, var(--green-deep), var(--green-dark) 60%, var(--green-main));
+      color: var(--white);
+      font-size: 14px;
+    }
+
+    .top-bar .container {
+      padding: 10px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(232, 255, 241, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .logo-strip {
+      padding: 18px 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .logo-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 108px;
+    }
+
+    .logo-img {
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .auw-logo { max-height: 128px; }
+    .program-logo { max-height: 156px; }
+    .gbm-logo { max-height: 140px; }
+
+    .nav-content {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-top: 1px solid rgba(207, 232, 218, 0.7);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 64px;
+      height: 64px;
+      background: transparent;
+      border: none;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      overflow: visible;
+      box-shadow: none;
+    }
+
+    .brand-icon img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+    }
+
+    .brand h1 {
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .brand p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--green-main);
+    }
+
+    .old-link {
+      background: linear-gradient(135deg, var(--gold), #ffcc5c);
+      color: var(--white) !important;
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: 0.2s ease;
+    }
+
+    .old-link:hover {
+      background: var(--gold-dark);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+      font-size: 18px;
+      color: var(--text-dark);
+      cursor: pointer;
+    }
+
+    .section-padding {
+      padding: 86px 0;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .contact-card,
+    .form-card,
+    .map-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(167, 231, 194, 0.85);
+      border-radius: 30px;
+      padding: 34px;
+      box-shadow: 0 18px 45px rgba(2, 60, 44, 0.10);
+      overflow: hidden;
+    }
+
+    .contact-card::before,
+    .form-card::before,
+    .map-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 7px;
+      background: linear-gradient(90deg, var(--green-deep), var(--green-main), var(--gold));
+    }
+
+    .contact-card h2,
+    .form-card h2,
+    .map-card h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+
+    .contact-card > p,
+    .form-card > p,
+    .map-card > p {
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      font-size: 16px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .contact-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--green-card) 100%);
+    }
+
+    .contact-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-main));
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      box-shadow: 0 10px 22px rgba(0, 155, 99, 0.18);
+    }
+
+    .contact-item h3 {
+      color: var(--text-dark);
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .contact-item p,
+    .contact-item a {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .contact-item a:hover {
+      color: var(--green-main);
+    }
+
+    .google-form-box {
+      display: grid;
+      gap: 18px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--green-card) 100%);
+    }
+
+    .google-form-box h3 {
+      color: var(--text-dark);
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .google-form-box p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .submit-btn {
+      border: none;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--green-deep), var(--green-main));
+      color: var(--white);
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(0, 155, 99, 0.22);
+      transition: 0.2s ease;
+      width: fit-content;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 38px rgba(0, 155, 99, 0.28);
+    }
+
+    .form-note {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .map-section {
+      padding: 0 0 86px;
+    }
+
+    .map-frame {
+      margin-top: 22px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 30px rgba(0, 155, 99, 0.12);
+      background: var(--white);
+    }
+
+    .map-frame iframe {
+      display: block;
+      width: 100%;
+      min-height: 360px;
+      border: 0;
+    }
+
+    .footer {
+      background: linear-gradient(135deg, var(--green-deep), var(--green-dark) 60%, var(--green-main));
+      color: var(--white);
+      padding: 56px 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1.2fr;
+      gap: 36px;
+    }
+
+    .footer p,
+    .footer a {
+      color: #d1fae5;
+    }
+
+    .footer h3,
+    .footer h2 {
+      margin-bottom: 14px;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+    }
+
+    @media (max-width: 1000px) {
+      .nav-links {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 236px;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px 4%;
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .logo-strip {
+        min-height: auto;
+        gap: 16px;
+      }
+
+      .auw-logo { max-height: 96px; }
+      .program-logo { max-height: 112px; }
+      .gbm-logo { max-height: 102px; }
+
+      .contact-layout,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .top-bar .container {
+        font-size: 13px;
+      }
+
+      .logo-strip {
+        padding: 14px 0 12px;
+        gap: 10px;
+      }
+
+      .logo-box {
+        min-height: 78px;
+      }
+
+      .auw-logo { max-height: 68px; }
+      .program-logo { max-height: 78px; }
+      .gbm-logo { max-height: 72px; }
+
+      .brand-icon,
+      .brand-icon img {
+        width: 52px;
+        height: 52px;
+      }
+
+      .nav-links {
+        top: 202px;
+      }
+
+      .section-padding {
+        padding: 64px 0;
+      }
+
+      .contact-card,
+      .form-card,
+      .map-card {
+        border-radius: 24px;
+        padding: 26px;
+      }
+
+      .contact-item {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="container">
+      <p>Environmental Sciences Program, Asian University for Women</p>
+      <p>ICECA@auw.edu.bd</p>
+    </div>
+  </div>
+
+  <header class="navbar">
+    <div class="container logo-strip">
+      <div class="logo-box">
+        <img src="images/auw-logo.png" alt="Asian University for Women Logo" class="logo-img auw-logo">
+      </div>
+      <div class="logo-box center-logo">
+        <img src="images/program-logo.png" alt="ICECA 2026 Conference Logo" class="logo-img program-logo">
+      </div>
+      <div class="logo-box">
+        <img src="images/gbm-logo.png" alt="Green Bangle Movement Logo" class="logo-img gbm-logo">
+      </div>
+    </div>
+
+    <div class="container nav-content">
+      <a href="index.html" class="brand">
+        <div class="brand-icon image-brand">
+          <img src="images/program-logo.png" alt="ICECA 2026 Logo">
+        </div>
+        <div>
+          <h1>ICECA 2026</h1>
+          <p>Environment & Climate Action</p>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="travel-stay.html">Travel & Stay</a>
+        <a href="themes.html">Themes & Schedule</a>
+        <a href="speakers.html">Speakers</a>
+        <a href="committee.html">Committee</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a class="old-link" href="https://iceca.auw.edu.bd/" target="_blank">ICECA 2025</a>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-padding">
+      <div class="container contact-layout">
+        <div class="contact-card">
+          <h2>Contact Us</h2>
+          <p>For questions related to ICECA 2026, abstract submission, registration, travel, or conference participation, please contact the organising team.</p>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-regular fa-envelope"></i></div>
+              <div>
+                <h3>Email</h3>
+                <a href="mailto:ICECA@auw.edu.bd">ICECA@auw.edu.bd</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-regular fa-envelope-open"></i></div>
+              <div>
+                <h3>Secretary Email</h3>
+                <a href="mailto:nawar.rahman23@auw.edu.bd">nawar.rahman23@auw.edu.bd</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <h3>Phone</h3>
+                <p><a href="tel:+8801632697821">+8801632697821</a></p>
+                <p><a href="tel:+8801333145693">+8801333145693</a></p>
+                <p><a href="tel:+8801774474241">+8801774474241</a></p>
+                <p><a href="tel:+8801309045982">+8801309045982</a></p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-solid fa-building-columns"></i></div>
+              <div>
+                <h3>Organizer</h3>
+                <p>Environmental Sciences Program, Asian University for Women</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <h3>Venue</h3>
+                <p>Asian University for Women, Chattogram, Bangladesh</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon"><i class="fa-regular fa-calendar-days"></i></div>
+              <div>
+                <h3>Conference Date</h3>
+                <p>7–8 August 2026</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h2>Send an Enquiry</h2>
+          <p>Please use the enquiry form for questions about ICECA 2026, registration, abstract submission, travel, or participation.</p>
+
+          <div class="google-form-box">
+            <h3>ICECA 2026 Enquiry Form</h3>
+            <p>Click the button below to open the official enquiry form in a new tab.</p>
+            <a href="https://forms.gle/Ugy2XuiMvkr32EY46" target="_blank" class="submit-btn">Open Enquiry Form</a>
+            <p class="form-note">You may also email directly at ICECA@auw.edu.bd or nawar.rahman23@auw.edu.bd.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="map-section">
+      <div class="container">
+        <div class="map-card">
+          <h2>Location</h2>
+          <p>Asian University for Women, Chattogram, Bangladesh.</p>
+
+          <div class="map-frame">
+            <iframe
+              src="https://www.google.com/maps?q=Asian%20University%20for%20Women%20Chattogram%20Bangladesh&output=embed"
+              width="100%"
+              height="360"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div>
+        <h2>ICECA 2026</h2>
+        <p>2nd International Conference on Environment and Climate Action 2026.</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <div class="footer-links">
+          <a href="https://iceca.auw.edu.bd/" target="_blank">ICECA 2025</a>
+          <a href="index.html#submission">Registration</a>
+          <a href="index.html#submission">Submission</a>
+        </div>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p><i class="fa-regular fa-envelope"></i> ICECA@auw.edu.bd</p>
+        <p><i class="fa-regular fa-envelope-open"></i> nawar.rahman23@auw.edu.bd</p>
+        <p><i class="fa-solid fa-phone"></i> +8801632697821</p>
+        <p>Environmental Sciences Program, Asian University for Women</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
