@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ICECA 2026 | 2nd International Conference on Environment and Climate Action</title>
 
-  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -63,37 +61,9 @@
       margin: 0 auto;
     }
 
-    .top-bar {
-      background: linear-gradient(135deg, var(--green-deep), var(--green-dark) 60%, var(--green-main));
-      color: var(--white);
-      font-size: 14px;
-    }
-
-    .top-bar .container {
-      padding: 10px 0;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    .logo-area {
       background: rgba(232, 255, 241, 0.96);
-      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
-      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
-    }
-
-    .nav-content {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      border-top: 1px solid rgba(207, 232, 218, 0.7);
     }
 
     .logo-strip {
@@ -109,27 +79,6 @@
       justify-content: center;
       align-items: center;
       min-height: 108px;
-    }
-
-    .logo-placeholder {
-      width: 118px;
-      height: 118px;
-      border-radius: 50%;
-      border: 2px dashed #55c98a;
-      background: rgba(255, 255, 255, 0.75);
-      color: var(--green-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.35;
-    }
-
-    .center-logo .logo-placeholder {
-      width: 132px;
-      height: 132px;
     }
 
     .logo-img {
@@ -148,6 +97,24 @@
 
     .gbm-logo {
       max-height: 140px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(232, 255, 241, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .nav-content {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
 
     .brand {
@@ -226,7 +193,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      background: linear-gradient(120deg, #d8ffe7 0%, #95eaba 45%, #1bbf7b 100%);
+      background: linear-gradient(120deg, #d8ffe7 0%, #93e8b7 48%, #10a86b 100%);
     }
 
     .hero::after {
@@ -251,20 +218,6 @@
       align-items: center;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 16px;
-      border-radius: 999px;
-      background: #d9ffe9;
-      border: 1px solid #82dca9;
-      color: var(--green-main);
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
-
     .hero h2 {
       font-size: clamp(36px, 4.6vw, 52px);
       line-height: 1.08;
@@ -272,6 +225,7 @@
       font-weight: 700;
       color: var(--text-dark);
       max-width: 590px;
+      animation: softSlideIn 0.9s ease both;
     }
 
     .hero p {
@@ -280,6 +234,7 @@
       color: #173d31;
       max-width: 560px;
       font-weight: 500;
+      animation: softSlideIn 1.05s ease both;
     }
 
     .hero-actions {
@@ -288,6 +243,18 @@
       gap: 16px;
       flex-wrap: wrap;
       max-width: 560px;
+      animation: softSlideIn 1.18s ease both;
+    }
+
+    @keyframes softSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .btn {
@@ -301,6 +268,24 @@
       border: 1px solid transparent;
       transition: 0.2s ease;
       cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -90%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+      transform: skewX(-20deg);
+      transition: 0.55s ease;
+    }
+
+    .btn:hover::after {
+      left: 130%;
     }
 
     .btn-primary {
@@ -311,6 +296,7 @@
 
     .btn-primary:hover {
       background: linear-gradient(135deg, var(--green-deep), var(--green-dark) 60%, var(--green-main));
+      transform: translateY(-2px);
     }
 
     .btn-outline {
@@ -320,7 +306,7 @@
     }
 
     .btn-outline:hover {
-      background: #eafff2
+      background: #eafff2;
     }
 
     .details-card {
@@ -330,6 +316,12 @@
       box-shadow: 0 28px 70px rgba(2, 60, 44, 0.28);
       border: 1px solid rgba(255,255,255,0.75);
       backdrop-filter: blur(10px);
+      transition: 0.35s ease;
+    }
+
+    .details-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 34px 80px rgba(2, 60, 44, 0.24);
     }
 
     .eyebrow {
@@ -342,7 +334,6 @@
 
     .details-card h3,
     .section-title h2,
-    .card h3,
     .info-card h2 {
       color: var(--text-dark);
     }
@@ -394,6 +385,17 @@
       padding: 86px 0;
     }
 
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal-section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .about-grid {
       display: grid;
       grid-template-columns: 0.8fr 1.5fr;
@@ -431,6 +433,10 @@
       font-size: 17px;
     }
 
+    .about-box .hero-actions {
+      margin-top: 28px;
+    }
+
     .poster-section {
       padding: 20px 0 86px;
       background: var(--bg);
@@ -444,12 +450,23 @@
       border-radius: 32px;
       padding: 18px;
       box-shadow: 0 22px 55px rgba(0, 155, 99, 0.18);
+      transition: 0.35s ease;
+    }
+
+    .poster-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 70px rgba(0, 155, 99, 0.22);
     }
 
     .poster-card img {
       width: 100%;
       border-radius: 24px;
       border: 1px solid rgba(167, 231, 194, 0.75);
+      transition: 0.35s ease;
+    }
+
+    .poster-card:hover img {
+      transform: scale(1.01);
     }
 
     .about-extra-section {
@@ -521,7 +538,8 @@
       margin-bottom: 20px;
     }
 
-    .info-card h2 {
+    .info-card h2,
+    .mini-card h2 {
       font-size: 32px;
       margin-bottom: 16px;
     }
@@ -548,10 +566,6 @@
       color: var(--text-muted);
     }
 
-    .soft-section {
-      background: linear-gradient(135deg, #c8f6dd 0%, #8fe8b5 55%, #35c987 100%);
-    }
-
     .two-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -563,50 +577,181 @@
       padding: 38px;
     }
 
-    .speaker-grid {
-      margin-top: 28px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+    .gallery-section {
+      position: relative;
+      background: linear-gradient(135deg, #c8f6dd 0%, #8fe8b5 55%, #35c987 100%);
+      overflow: hidden;
     }
 
-    .speaker-placeholder {
-      background: linear-gradient(180deg, #ffffff 0%, var(--green-card) 100%);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 22px;
-    }
-
-    .avatar {
-      width: 92px;
-      height: 92px;
+    .gallery-section::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
       border-radius: 50%;
-      background: var(--green-soft);
-      border: 1px solid #b7dfc7;
-      margin-bottom: 16px;
+      background: rgba(255, 255, 255, 0.18);
+      top: -150px;
+      left: -120px;
     }
 
-    .role-list {
-      margin-top: 28px;
-      display: grid;
-      gap: 12px;
+    .gallery-section::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: rgba(2, 60, 44, 0.10);
+      right: -160px;
+      bottom: -180px;
     }
 
-    .role-item {
-      background: linear-gradient(180deg, #ffffff 0%, var(--green-card) 100%);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .gallery-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-title {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 38px;
+    }
+
+    .gallery-title .label {
+      color: var(--green-main);
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.18em;
       font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .gallery-title h2 {
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+    }
+
+    .gallery-title p {
+      color: var(--text-muted);
+      font-size: 17px;
+    }
+
+    .gallery-slider {
+      position: relative;
+      max-width: 980px;
+      margin: 0 auto;
+      border-radius: 34px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      box-shadow: 0 28px 70px rgba(2, 60, 44, 0.22);
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .gallery-track {
+      display: flex;
+      transition: transform 0.65s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .gallery-slide {
+      min-width: 100%;
+      position: relative;
+      background: var(--green-card);
+    }
+
+    .gallery-slide img {
+      width: 100%;
+      height: 540px;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.01);
+    }
+
+    .gallery-slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 45%, rgba(2, 60, 44, 0.72));
+      pointer-events: none;
+    }
+
+    .slide-caption {
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      bottom: 30px;
+      color: var(--white);
+      z-index: 2;
+    }
+
+    .slide-caption h3 {
+      font-size: clamp(24px, 3vw, 36px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .gallery-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      color: var(--white);
+      backdrop-filter: blur(10px);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      z-index: 3;
+      transition: 0.2s ease;
+    }
+
+    .gallery-btn:hover {
+      background: rgba(255, 255, 255, 0.32);
+      transform: translateY(-50%) scale(1.06);
+    }
+
+    .gallery-btn.prev {
+      left: 22px;
+    }
+
+    .gallery-btn.next {
+      right: 22px;
+    }
+
+    .gallery-dots {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+      z-index: 4;
+    }
+
+    .gallery-dot {
+      width: 10px;
+      height: 10px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.58);
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .gallery-dot.active {
+      width: 34px;
+      background: var(--gold);
     }
 
     .footer {
       background: linear-gradient(135deg, var(--green-deep), var(--green-dark) 60%, var(--green-main));
       color: var(--white);
-      padding: 56px 0;
+      padding: 56px 0 28px;
     }
 
     .footer-grid {
@@ -630,12 +775,23 @@
       gap: 8px;
     }
 
+    .designer-credit {
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(209, 250, 229, 0.25);
+      text-align: right;
+      color: rgba(209, 250, 229, 0.78);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
     @media (max-width: 1000px) {
       .nav-links {
         position: absolute;
         left: 0;
         right: 0;
-        top: 236px;
+        top: 72px;
         background: var(--white);
         border-bottom: 1px solid var(--border);
         flex-direction: column;
@@ -684,17 +840,9 @@
       .gbm-logo {
         max-height: 102px;
       }
-
-      .themes-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
 
     @media (max-width: 640px) {
-      .top-bar .container {
-        font-size: 13px;
-      }
-
       .logo-strip {
         padding: 14px 0 12px;
         gap: 10px;
@@ -734,7 +882,7 @@
       }
 
       .nav-links {
-        top: 202px;
+        top: 72px;
       }
 
       .hero-content {
@@ -749,15 +897,6 @@
         padding: 64px 0;
       }
 
-      .section-head {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .speaker-grid {
-        grid-template-columns: 1fr;
-      }
-
       .details-card,
       .about-box,
       .info-card,
@@ -770,54 +909,90 @@
         flex-direction: column;
         gap: 4px;
       }
+
+      .gallery-slider {
+        border-radius: 24px;
+      }
+
+      .gallery-slide img {
+        height: 330px;
+      }
+
+      .gallery-btn {
+        width: 40px;
+        height: 40px;
+      }
+
+      .gallery-btn.prev {
+        left: 12px;
+      }
+
+      .gallery-btn.next {
+        right: 12px;
+      }
+
+      .slide-caption {
+        left: 22px;
+        right: 22px;
+        bottom: 40px;
+      }
+
+      .slide-caption h3 {
+        font-size: 24px;
+      }
+
+      .designer-credit {
+        text-align: left;
+        font-size: 12px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="top-bar">
-    <div class="container">
-      <p>Environmental Sciences Program, Asian University for Women</p>
-      <p>ICECA@auw.edu.bd</p>
-    </div>
-  </div>
+  <header>
+    <div class="logo-area">
+      <div class="container logo-strip">
+        <div class="logo-box">
+          <img src="images/auw-logo.png" alt="Asian University for Women Logo" class="logo-img auw-logo">
+        </div>
 
-  <header class="navbar">
-    <div class="container logo-strip">
-      <div class="logo-box">
-        <img src="images/auw-logo.png" alt="Asian University for Women Logo" class="logo-img auw-logo">
-      </div>
-      <div class="logo-box center-logo">
-        <img src="images/program-logo.png" alt="ICECA 2026 Conference Logo" class="logo-img program-logo">
-      </div>
-      <div class="logo-box">
-        <img src="images/gbm-logo.png" alt="Green Bangle Movement Logo" class="logo-img gbm-logo">
+        <div class="logo-box center-logo">
+          <img src="images/program-logo.png" alt="ICECA 2026 Conference Logo" class="logo-img program-logo">
+        </div>
+
+        <div class="logo-box">
+          <img src="images/gbm-logo.png" alt="Green Bangle Movement Logo" class="logo-img gbm-logo">
+        </div>
       </div>
     </div>
 
-    <div class="container nav-content">
-      <a href="#home" class="brand">
-        <div class="brand-icon image-brand">
-          <img src="images/program-logo.png" alt="ICECA 2026 Logo">
-        </div>
-        <div>
-          <h1>ICECA 2026</h1>
-          <p>Environment & Climate Action</p>
-        </div>
-      </a>
+    <div class="navbar">
+      <div class="container nav-content">
+        <a href="#home" class="brand">
+          <div class="brand-icon image-brand">
+            <img src="images/program-logo.png" alt="ICECA 2026 Logo">
+          </div>
+          <div>
+            <h1>ICECA 2026</h1>
+            <p>Environment & Climate Action</p>
+          </div>
+        </a>
 
-      <nav class="nav-links" id="navLinks">
-        <a href="#home">Home</a>
-        <a href="travel-stay.html">Travel & Stay</a>
-        <a href="themes.html">Themes & Schedule</a>
-        <a href="speakers.html">Speakers</a>
-        <a href="committee.html">Committee</a>
-        <a href="contact.html">Contact</a>
-        <a class="old-link" href="https://iceca.auw.edu.bd/" target="_blank">ICECA 2025</a>
-      </nav>
+        <nav class="nav-links" id="navLinks">
+          <a href="#home">Home</a>
+          <a href="travel-stay.html">Travel & Stay</a>
+          <a href="themes.html">Themes & Schedule</a>
+          <a href="speakers.html">Speakers</a>
+          <a href="committee.html">Committee</a>
+          <a href="contact.html">Contact</a>
+          <a class="old-link" href="https://iceca.auw.edu.bd/" target="_blank">ICECA 2025</a>
+        </nav>
 
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -829,7 +1004,9 @@
           <p><strong>“Women for Green World: Leading Change, Inspiring Action”</strong></p>
           <p>A refined academic platform for researchers, students, policymakers, activists, and industry leaders to share ideas for a sustainable and climate-resilient future.</p>
           <div class="hero-actions">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebOHjvNcZJ55JIvAVAjX7d_ZvvV-C_O1zBdQGZsj65Q9Yx3w/viewform" target="_blank" class="btn btn-primary">Submit Abstract <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebOHjvNcZJ55JIvAVAjX7d_ZvvV-C_O1zBdQGZsj65Q9Yx3w/viewform" target="_blank" class="btn btn-primary">
+              Submit Abstract <i class="fa-solid fa-arrow-right"></i>
+            </a>
             <a href="#about" class="btn btn-outline">Learn More</a>
           </div>
         </div>
@@ -864,19 +1041,26 @@
       </div>
     </section>
 
-    <section class="section-padding" id="about">
+    <section class="section-padding reveal-section" id="about">
       <div class="container about-grid">
         <div class="section-title">
           <p class="label">About the Conference</p>
           <h2>Women for Green World: Leading Change, Inspiring Action.</h2>
         </div>
+
         <div class="about-box">
           <p>The 2nd International Conference on Environment and Climate Action 2026, ICECA 2026, will bring together researchers, students, professionals, policymakers, and environmental advocates to discuss urgent environmental challenges and climate action. Organized by the Environmental Sciences Program at Asian University for Women, the conference focuses on women-led leadership, sustainable solutions, and inspiring action for a greener world.</p>
+
+          <div class="hero-actions">
+            <a href="files/iceca-2025-abstract-book.pdf" target="_blank" class="btn btn-primary">
+              View Previous Abstract Book
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="poster-section">
+    <section class="poster-section reveal-section">
       <div class="container">
         <div class="poster-card">
           <img src="images/conference-poster.png" alt="ICECA 2026 conference poster" />
@@ -884,7 +1068,7 @@
       </div>
     </section>
 
-    <section class="section-padding about-extra-section">
+    <section class="section-padding about-extra-section reveal-section">
       <div class="container two-grid">
         <div class="mini-card">
           <div class="card-logo-wrap">
@@ -904,7 +1088,7 @@
       </div>
     </section>
 
-    <section class="section-padding">
+    <section class="section-padding reveal-section">
       <div class="container info-grid">
         <div class="info-card submission-card" id="submission">
           <div class="section-icon"><i class="fa-regular fa-file-lines"></i></div>
@@ -913,9 +1097,14 @@
           <p>Students – 2500 BDT (no trip) || 4500 BDT (with trip)</p>
           <p>Professionals – 3500 BDT (no trip) || 5500 BDT (with trip)</p>
           <p>Foreign Participants – 100 USD</p>
+
           <div class="hero-actions">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebOHjvNcZJ55JIvAVAjX7d_ZvvV-C_O1zBdQGZsj65Q9Yx3w/viewform" target="_blank" class="btn" style="background: linear-gradient(135deg, var(--gold), #ffcc5c); color: white;">Submit Abstract</a>
-            <a href="#" class="btn" style="border-color: rgba(255,255,255,0.35); color: white;">Registration Coming Soon</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSebOHjvNcZJ55JIvAVAjX7d_ZvvV-C_O1zBdQGZsj65Q9Yx3w/viewform" target="_blank" class="btn" style="background: linear-gradient(135deg, var(--gold), #ffcc5c); color: white;">
+              Submit Abstract
+            </a>
+            <a href="#" class="btn" style="border-color: rgba(255,255,255,0.35); color: white;">
+              Registration Coming Soon
+            </a>
           </div>
         </div>
 
@@ -932,7 +1121,71 @@
       </div>
     </section>
 
-    </main>
+    <section class="section-padding gallery-section reveal-section">
+      <div class="container gallery-content">
+        <div class="gallery-title">
+          <p class="label">Previous Conference</p>
+          <h2>Moments from ICECA 2025</h2>
+          <p>Highlights and memories from the previous International Conference on Environment and Climate Action.</p>
+        </div>
+
+        <div class="gallery-slider" id="gallerySlider">
+          <div class="gallery-track" id="galleryTrack">
+            <div class="gallery-slide">
+              <img src="images/previous-conference/previous-1.jpg" alt="ICECA previous conference photo 1">
+              <div class="slide-caption">
+                <h3>Sharing ideas for climate action</h3>
+              </div>
+            </div>
+
+            <div class="gallery-slide">
+              <img src="images/previous-conference/previous-2.jpg" alt="ICECA previous conference photo 2">
+              <div class="slide-caption">
+                <h3>Academic dialogue and collaboration</h3>
+              </div>
+            </div>
+
+            <div class="gallery-slide">
+              <img src="images/previous-conference/previous-3.jpg" alt="ICECA previous conference photo 3">
+              <div class="slide-caption">
+                <h3>Women-led environmental leadership</h3>
+              </div>
+            </div>
+
+            <div class="gallery-slide">
+              <img src="images/previous-conference/previous-4.jpg" alt="ICECA previous conference photo 4">
+              <div class="slide-caption">
+                <h3>Conference sessions and networking</h3>
+              </div>
+            </div>
+
+            <div class="gallery-slide">
+              <img src="images/previous-conference/previous-5.jpg" alt="ICECA previous conference photo 5">
+              <div class="slide-caption">
+                <h3>Building a greener future together</h3>
+              </div>
+            </div>
+          </div>
+
+          <button class="gallery-btn prev" id="galleryPrev" aria-label="Previous image">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <button class="gallery-btn next" id="galleryNext" aria-label="Next image">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+          <div class="gallery-dots" id="galleryDots">
+            <button class="gallery-dot active" aria-label="Go to slide 1"></button>
+            <button class="gallery-dot" aria-label="Go to slide 2"></button>
+            <button class="gallery-dot" aria-label="Go to slide 3"></button>
+            <button class="gallery-dot" aria-label="Go to slide 4"></button>
+            <button class="gallery-dot" aria-label="Go to slide 5"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer class="footer" id="contact">
     <div class="container footer-grid">
@@ -940,6 +1193,7 @@
         <h2>ICECA 2026</h2>
         <p>2nd International Conference on Environment and Climate Action 2026.</p>
       </div>
+
       <div>
         <h3>Quick Links</h3>
         <div class="footer-links">
@@ -948,11 +1202,16 @@
           <a href="#submission">Submission</a>
         </div>
       </div>
+
       <div>
         <h3>Contact</h3>
         <p><i class="fa-regular fa-envelope"></i> ICECA@auw.edu.bd</p>
         <p>Environmental Sciences Program, Asian University for Women</p>
       </div>
+    </div>
+
+    <div class="container designer-credit">
+      Designed by Nazia Zarin Riti
     </div>
   </footer>
 
@@ -968,6 +1227,89 @@
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
       });
+    });
+
+    const galleryTrack = document.getElementById('galleryTrack');
+    const gallerySlides = document.querySelectorAll('.gallery-slide');
+    const galleryDots = document.querySelectorAll('.gallery-dot');
+    const galleryPrev = document.getElementById('galleryPrev');
+    const galleryNext = document.getElementById('galleryNext');
+    const gallerySlider = document.getElementById('gallerySlider');
+
+    let currentSlide = 0;
+    let slideTimer;
+
+    function showSlide(index) {
+      if (index < 0) {
+        currentSlide = gallerySlides.length - 1;
+      } else if (index >= gallerySlides.length) {
+        currentSlide = 0;
+      } else {
+        currentSlide = index;
+      }
+
+      galleryTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+      galleryDots.forEach((dot, dotIndex) => {
+        dot.classList.toggle('active', dotIndex === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    function startSlider() {
+      slideTimer = setInterval(nextSlide, 4000);
+    }
+
+    function stopSlider() {
+      clearInterval(slideTimer);
+    }
+
+    galleryNext.addEventListener('click', () => {
+      nextSlide();
+      stopSlider();
+      startSlider();
+    });
+
+    galleryPrev.addEventListener('click', () => {
+      prevSlide();
+      stopSlider();
+      startSlider();
+    });
+
+    galleryDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        showSlide(index);
+        stopSlider();
+        startSlider();
+      });
+    });
+
+    gallerySlider.addEventListener('mouseenter', stopSlider);
+    gallerySlider.addEventListener('mouseleave', startSlider);
+
+    startSlider();
+
+    const revealSections = document.querySelectorAll('.reveal-section');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.14
+    });
+
+    revealSections.forEach((section) => {
+      sectionObserver.observe(section);
     });
   </script>
 </body>
