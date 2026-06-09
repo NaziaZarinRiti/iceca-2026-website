@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -57,28 +58,9 @@
       margin: 0 auto;
     }
 
-    .top-bar {
-      background: linear-gradient(135deg, var(--green-deep), var(--green-dark) 60%, var(--green-main));
-      color: var(--white);
-      font-size: 14px;
-    }
-
-    .top-bar .container {
-      padding: 10px 0;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    .logo-area {
       background: rgba(232, 255, 241, 0.96);
-      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
-      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
     }
 
     .logo-strip {
@@ -102,9 +84,27 @@
       display: block;
     }
 
-    .auw-logo { max-height: 128px; }
-    .program-logo { max-height: 156px; }
-    .gbm-logo { max-height: 140px; }
+    .auw-logo {
+      max-height: 128px;
+    }
+
+    .program-logo {
+      max-height: 156px;
+    }
+
+    .gbm-logo {
+      max-height: 140px;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(232, 255, 241, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
 
     .nav-content {
       min-height: 72px;
@@ -112,7 +112,6 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      border-top: 1px solid rgba(207, 232, 218, 0.7);
     }
 
     .brand {
@@ -160,9 +159,30 @@
       color: #334155;
     }
 
+    .nav-links a {
+      position: relative;
+    }
+
     .nav-links a:hover,
     .nav-links a.active {
       color: var(--green-main);
+    }
+
+    .nav-links a:not(.old-link)::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--green-main);
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:not(.old-link):hover::after,
+    .nav-links a.active:not(.old-link)::after {
+      width: 100%;
     }
 
     .old-link {
@@ -175,6 +195,7 @@
 
     .old-link:hover {
       background: var(--gold-dark);
+      transform: translateY(-2px);
     }
 
     .mobile-menu-btn {
@@ -193,93 +214,274 @@
       padding: 86px 0;
     }
 
+    .page-title {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto 54px;
+      animation: softSlideIn 0.9s ease both;
+    }
+
+    .page-title .label {
+      color: var(--green-main);
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .page-title h2 {
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      color: var(--text-dark);
+      margin-bottom: 18px;
+    }
+
+    .page-title p {
+      color: var(--text-muted);
+      font-size: 18px;
+    }
+
+    .category-block {
+      margin-bottom: 72px;
+    }
+
+    .category-title {
+      border-left: 6px solid var(--green-main);
+      padding: 8px 0 8px 20px;
+      margin-bottom: 30px;
+    }
+
+    .category-title h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--text-dark);
+    }
+
     .committee-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 26px;
-      align-items: start;
     }
 
-    .committee-card,
-    .sponsor-card {
+    .committee-grid.one-card {
+      grid-template-columns: minmax(280px, 470px);
+    }
+
+    .committee-card {
       position: relative;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid rgba(167, 231, 194, 0.85);
       border-radius: 30px;
-      padding: 32px;
+      padding: 30px;
       box-shadow: 0 18px 45px rgba(2, 60, 44, 0.10);
-      overflow: hidden;
+      transition: 0.35s ease;
       height: 100%;
+      overflow: hidden;
     }
 
-    .committee-card::before,
-    .sponsor-card::before {
+    .committee-card::before {
       content: "";
       position: absolute;
       inset: 0 0 auto 0;
       height: 7px;
-      background: linear-gradient(90deg, var(--green-deep), var(--green-main), var(--gold));
+      background: linear-gradient(90deg, var(--green-deep), var(--green-main), var(--gold), var(--green-main), var(--green-deep));
+      background-size: 200% 100%;
+      animation: borderMove 4s linear infinite;
     }
 
-    .committee-card h2,
-    .sponsor-card h2 {
-      font-size: clamp(26px, 3vw, 34px);
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      color: var(--text-dark);
-      margin-bottom: 24px;
+    .committee-card::after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(0, 155, 99, 0.07);
+      right: -55px;
+      bottom: -65px;
+      transition: 0.35s ease;
     }
 
-    .committee-group {
+    .committee-card:hover {
+      transform: translateY(-9px) scale(1.01);
+      box-shadow: 0 28px 65px rgba(2, 60, 44, 0.18);
+      border-color: var(--green-main);
+    }
+
+    .committee-card:hover::after {
+      transform: scale(1.25);
+      background: rgba(244, 182, 63, 0.12);
+    }
+
+    .committee-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
       margin-bottom: 22px;
-    }
-
-    .committee-group:last-child {
-      margin-bottom: 0;
-    }
-
-    .committee-group h3 {
+      overflow: hidden;
+      border: 4px solid #ffffff;
+      outline: 1px solid var(--border);
+      box-shadow: 0 12px 28px rgba(0, 155, 99, 0.16);
+      background: linear-gradient(135deg, #e9fff2 0%, #b9f2d0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--green-dark);
-      font-size: 17px;
+      font-size: 38px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .committee-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.35s ease;
+    }
+
+    .committee-card:hover .committee-photo img {
+      transform: scale(1.08);
+    }
+
+    .committee-card h3 {
+      font-size: 22px;
+      line-height: 1.25;
       margin-bottom: 10px;
+      color: var(--text-dark);
+      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 1;
     }
 
-    .member-list {
-      list-style: none;
-      display: grid;
-      gap: 9px;
+    .committee-role {
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.55;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
     }
 
-    .member-list li {
+    .committee-org {
       color: var(--text-muted);
       font-size: 15px;
-      line-height: 1.45;
-      padding-left: 16px;
+      line-height: 1.65;
       position: relative;
+      z-index: 1;
     }
 
-    .member-list li::before {
+    .secretary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .secretary-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(167, 231, 194, 0.85);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 14px 34px rgba(2, 60, 44, 0.09);
+      overflow: hidden;
+      transition: 0.3s ease;
+    }
+
+    .secretary-card::before {
       content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green-main);
       position: absolute;
-      left: 0;
-      top: 9px;
+      inset: 0 0 auto 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--green-deep), var(--green-main), var(--gold), var(--green-main));
+      background-size: 200% 100%;
+      animation: borderMove 4s linear infinite;
     }
 
-    .member-list strong {
+    .secretary-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px rgba(2, 60, 44, 0.15);
+      border-color: var(--green-main);
+    }
+
+    .secretary-photo {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      margin-bottom: 16px;
+      overflow: hidden;
+      border: 3px solid #ffffff;
+      outline: 1px solid var(--border);
+      background: linear-gradient(135deg, #e9fff2 0%, #b9f2d0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--green-dark);
+      font-size: 28px;
+      box-shadow: 0 10px 22px rgba(0, 155, 99, 0.13);
+    }
+
+    .secretary-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.35s ease;
+    }
+
+    .secretary-card:hover .secretary-photo img {
+      transform: scale(1.08);
+    }
+
+    .secretary-card h3 {
+      font-size: 18px;
+      line-height: 1.3;
       color: var(--text-dark);
+    }
+
+    .reveal-card {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal-card.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .sponsor-section {
       padding: 0 0 86px;
     }
 
+    .sponsor-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(167, 231, 194, 0.85);
+      border-radius: 30px;
+      padding: 38px;
+      box-shadow: 0 18px 45px rgba(2, 60, 44, 0.10);
+      overflow: hidden;
+    }
+
+    .sponsor-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 7px;
+      background: linear-gradient(90deg, var(--green-deep), var(--green-main), var(--gold), var(--green-main), var(--green-deep));
+      background-size: 200% 100%;
+      animation: borderMove 4s linear infinite;
+    }
+
     .sponsor-card h2 {
-      text-align: center;
+      font-size: clamp(26px, 3vw, 34px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--text-dark);
       margin-bottom: 12px;
+      text-align: center;
     }
 
     .sponsor-card p {
@@ -308,12 +510,13 @@
       gap: 14px;
       min-height: 180px;
       text-align: center;
-      transition: 0.2s ease;
+      transition: 0.3s ease;
     }
 
     .sponsor-item:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
       box-shadow: 0 16px 36px rgba(0, 155, 99, 0.14);
+      border-color: var(--green-main);
     }
 
     .sponsor-logo {
@@ -327,6 +530,26 @@
       color: var(--green-dark);
       font-weight: 700;
       font-size: 15px;
+    }
+
+    @keyframes softSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes borderMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 200% 50%;
+      }
     }
 
     .footer {
@@ -361,7 +584,7 @@
         position: absolute;
         left: 0;
         right: 0;
-        top: 236px;
+        top: 72px;
         background: var(--white);
         border-bottom: 1px solid var(--border);
         flex-direction: column;
@@ -383,13 +606,23 @@
         gap: 16px;
       }
 
-      .auw-logo { max-height: 96px; }
-      .program-logo { max-height: 112px; }
-      .gbm-logo { max-height: 102px; }
+      .auw-logo {
+        max-height: 96px;
+      }
+
+      .program-logo {
+        max-height: 112px;
+      }
+
+      .gbm-logo {
+        max-height: 102px;
+      }
 
       .committee-grid,
+      .committee-grid.one-card,
+      .secretary-grid,
       .footer-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
       }
 
       .sponsor-grid {
@@ -398,10 +631,6 @@
     }
 
     @media (max-width: 640px) {
-      .top-bar .container {
-        font-size: 13px;
-      }
-
       .logo-strip {
         padding: 14px 0 12px;
         gap: 10px;
@@ -411,9 +640,17 @@
         min-height: 78px;
       }
 
-      .auw-logo { max-height: 68px; }
-      .program-logo { max-height: 78px; }
-      .gbm-logo { max-height: 72px; }
+      .auw-logo {
+        max-height: 68px;
+      }
+
+      .program-logo {
+        max-height: 78px;
+      }
+
+      .gbm-logo {
+        max-height: 72px;
+      }
 
       .brand-icon,
       .brand-icon img {
@@ -422,7 +659,7 @@
       }
 
       .nav-links {
-        top: 202px;
+        top: 72px;
       }
 
       .section-padding {
@@ -430,11 +667,16 @@
       }
 
       .committee-card,
+      .secretary-card,
       .sponsor-card {
         border-radius: 24px;
         padding: 26px;
       }
 
+      .committee-grid,
+      .committee-grid.one-card,
+      .secretary-grid,
+      .footer-grid,
       .sponsor-grid {
         grid-template-columns: 1fr;
       }
@@ -445,131 +687,316 @@
     }
   </style>
 </head>
+
 <body>
-  <div class="top-bar">
-    <div class="container">
-      <p>Environmental Sciences Program, Asian University for Women</p>
-      <p>ICECA@auw.edu.bd</p>
-    </div>
-  </div>
+  <header>
+    <div class="logo-area">
+      <div class="container logo-strip">
+        <div class="logo-box">
+          <img src="images/auw-logo.png" alt="Asian University for Women Logo" class="logo-img auw-logo">
+        </div>
 
-  <header class="navbar">
-    <div class="container logo-strip">
-      <div class="logo-box">
-        <img src="images/auw-logo.png" alt="Asian University for Women Logo" class="logo-img auw-logo">
-      </div>
-      <div class="logo-box center-logo">
-        <img src="images/program-logo.png" alt="ICECA 2026 Conference Logo" class="logo-img program-logo">
-      </div>
-      <div class="logo-box">
-        <img src="images/gbm-logo.png" alt="Green Bangle Movement Logo" class="logo-img gbm-logo">
+        <div class="logo-box center-logo">
+          <img src="images/program-logo.png" alt="ICECA 2026 Conference Logo" class="logo-img program-logo">
+        </div>
+
+        <div class="logo-box">
+          <img src="images/gbm-logo.png" alt="Green Bangle Movement Logo" class="logo-img gbm-logo">
+        </div>
       </div>
     </div>
 
-    <div class="container nav-content">
-      <a href="index.html" class="brand">
-        <div class="brand-icon image-brand">
-          <img src="images/program-logo.png" alt="ICECA 2026 Logo">
-        </div>
-        <div>
-          <h1>ICECA 2026</h1>
-          <p>Environment & Climate Action</p>
-        </div>
-      </a>
+    <div class="navbar">
+      <div class="container nav-content">
+        <a href="index.html" class="brand">
+          <div class="brand-icon image-brand">
+            <img src="images/program-logo.png" alt="ICECA 2026 Logo">
+          </div>
+          <div>
+            <h1>ICECA 2026</h1>
+            <p>Environment & Climate Action</p>
+          </div>
+        </a>
 
-      <nav class="nav-links" id="navLinks">
-        <a href="index.html">Home</a>
-        <a href="travel-stay.html">Travel & Stay</a>
-        <a href="themes.html">Themes & Schedule</a>
-        <a href="speakers.html">Speakers</a>
-        <a href="committee.html" class="active">Committee</a>
-        <a href="contact.html">Contact</a>
-        <a class="old-link" href="https://iceca.auw.edu.bd/" target="_blank">ICECA 2025</a>
-      </nav>
+        <nav class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="travel-stay.html">Travel & Stay</a>
+          <a href="themes.html">Themes & Schedule</a>
+          <a href="speakers.html">Speakers</a>
+          <a href="committee.html" class="active">Committee</a>
+          <a href="contact.html">Contact</a>
+          <a class="old-link" href="https://iceca.auw.edu.bd/" target="_blank">ICECA 2025</a>
+        </nav>
 
-      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="section-padding">
-      <div class="container committee-grid">
-        <article class="committee-card">
-          <h2>Organising Committee</h2>
+      <div class="container">
+        <div class="page-title">
+          <h2>Conference Committee</h2>
+          <p>The organizing and advisory committee members supporting ICECA 2026.</p>
+        </div>
 
-          <div class="committee-group">
-            <h3>Patron</h3>
-            <ul class="member-list">
-              <li>
-                <strong>Dr. Rubana Huq</strong><br>
-                Vice Chancellor, Asian University for Women, Bangladesh
-              </li>
-            </ul>
+        <div class="category-block">
+          <div class="category-title">
+            <h2>Organizing Chair</h2>
           </div>
 
-          <div class="committee-group">
-            <h3>Chair</h3>
-            <ul class="member-list">
-              <li>Dr. Mosae Selvakumar Paulraj</li>
-            </ul>
+          <div class="committee-grid one-card">
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/mosae-selvakumar-paulraj.jpg" alt="Dr. Mosae Selvakumar Paulraj" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Dr. Mosae Selvakumar Paulraj</h3>
+              <div class="committee-role">Associate Professor of Chemistry & Director of Environmental Sciences Program</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="category-block">
+          <div class="category-title">
+            <h2>Co-Chairs</h2>
           </div>
 
-          <div class="committee-group">
-            <h3>Co-Chairs</h3>
-            <ul class="member-list">
-              <li>Dr. Ahmendul Kabir</li>
-              <li>Dr. Shanta Dutta</li>
-              <li>Ms. Nazifa Rafa</li>
-            </ul>
+          <div class="committee-grid">
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/ahmedul-kabir.jpg" alt="Dr. Ahmedul Kabir" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Dr. Ahmedul Kabir</h3>
+              <div class="committee-role">Assistant Professor of Chemistry & Biochemistry</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/shanta-dutta.jpg" alt="Dr. Shanta Dutta" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Dr. Shanta Dutta</h3>
+              <div class="committee-role">Assistant Professor of Environmental Sciences</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/nazifa-rafa.jpg" alt="Ms. Nazifa Rafa" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Ms. Nazifa Rafa</h3>
+              <div class="committee-role">Senior Instructor<br>Environmental Science Program</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="category-block">
+          <div class="category-title">
+            <h2>Members</h2>
           </div>
 
-          <div class="committee-group">
-            <h3>Members</h3>
-            <ul class="member-list">
-              <li>Ms. Tanusree Das Gupta</li>
-              <li>Ms. Debosmita Chowdhury</li>
-              <li>Ms. Shaika Mohammad Chowdhury</li>
-              <li>Ms. Arap Jahan Nodi</li>
-            </ul>
+          <div class="committee-grid">
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/tanusree-das-gupta.jpg" alt="Ms. Tanusree Das Gupta" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Ms. Tanusree Das Gupta</h3>
+              <div class="committee-role">Lab Instructor<br>Environmental Science Program</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/debosmita-chowdhury.jpg" alt="Ms. Debosmita Chowdhury" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Ms. Debosmita Chowdhury</h3>
+              <div class="committee-role">Lab Instructor<br>Environmental Science Program</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/shaika-mohammad-chowdhury.jpg" alt="Ms. Shaika Mohammad Chowdhury" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Ms. Shaika Mohammad Chowdhury</h3>
+              <div class="committee-role">Assistant Project Manager<br>Green Bangle Project</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/arap-jahan-nodi.jpg" alt="Ms. Arap Jahan Nodi" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Ms. Arap Jahan Nodi</h3>
+              <div class="committee-role">Lab Officer<br>Environmental Science Program</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
           </div>
-        </article>
+        </div>
 
-        <article class="committee-card">
-          <h2>Secretaries</h2>
-          <ul class="member-list">
-            <li>Afra Nawar Rahman</li>
-            <li>Ayesha Shafika Bhuiyan</li>
-            <li>Ayesha Fairooz Mumu</li>
-            <li>Anika Mehejabin</li>
-            <li>Anika Tabassum Shoumi</li>
-            <li>Denazia Da Silva</li>
-            <li>Mehenu Marma</li>
-            <li>Nanggaw Htoi Nan</li>
-          </ul>
-        </article>
+        <div class="category-block">
+          <div class="category-title">
+            <h2>Secretaries</h2>
+          </div>
 
-        <article class="committee-card">
-          <h2>Advisory Committee</h2>
-          <ul class="member-list">
-            <li>Dr. Sangita Rayamajhi</li>
-            <li>Dr. Haseena Khan</li>
-            <li>Dr. Mohiuddin A. K. Chowdhury</li>
-            <li>Ms. Zarina Hossain</li>
-            <li>Dr. Tuhin Biswas</li>
-            <li>Dr. Suparna Das</li>
-            <li>Dr. Ayan Saha</li>
-            <li>Dr. Ayan Roy</li>
-            <li>Mrs. Tapu Chowdhury</li>
-          </ul>
-        </article>
+          <div class="secretary-grid">
+            <article class="secretary-card reveal-card">
+              <div class="secretary-photo">
+                <img src="images/committee/afra-nawar-rahman.jpg" alt="Afra Nawar Rahman" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Afra Nawar Rahman</h3>
+            </article>
+
+            <article class="secretary-card reveal-card">
+              <div class="secretary-photo">
+                <img src="images/committee/ayesha-shafika-bhuiyan.jpg" alt="Ayesha Shafika Bhuiyan" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Ayesha Shafika Bhuiyan</h3>
+            </article>
+
+            <article class="secretary-card reveal-card">
+              <div class="secretary-photo">
+                <img src="images/committee/ayesha-fairooz-mumu.jpg" alt="Ayesha Fairooz Mumu" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Ayesha Fairooz Mumu</h3>
+            </article>
+
+            <article class="secretary-card reveal-card">
+              <div class="secretary-photo">
+                <img src="images/committee/anika-mehejabin.jpg" alt="Anika Mehejabin" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Anika Mehejabin</h3>
+            </article>
+
+            <article class="secretary-card reveal-card">
+              <div class="secretary-photo">
+                <img src="images/committee/anika-tabassum-shoumi.jpg" alt="Anika Tabassum Shoumi" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Anika Tabassum Shoumi</h3>
+            </article>
+
+            <article class="secretary-card reveal-card">
+              <div class="secretary-photo">
+                <img src="images/committee/denazia-da-silva.jpg" alt="Denazia Da Silva" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Denazia Da Silva</h3>
+            </article>
+
+            <article class="secretary-card reveal-card">
+              <div class="secretary-photo">
+                <img src="images/committee/mehenu-marma.jpg" alt="Mehenu Marma" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Mehenu Marma</h3>
+            </article>
+
+            <article class="secretary-card reveal-card">
+              <div class="secretary-photo">
+                <img src="images/committee/nanggaw-htoi-nan.jpg" alt="Nanggaw Htoi Nan" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Nanggaw Htoi Nan</h3>
+            </article>
+          </div>
+        </div>
+
+        <div class="category-block">
+          <div class="category-title">
+            <h2>Advisory Committee</h2>
+          </div>
+
+          <div class="committee-grid">
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/sangita-rayamajhi.jpg" alt="Dr. Sangita Rayamajhi" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Dr. Sangita Rayamajhi</h3>
+              <div class="committee-role">Interim Dean of Academic Affairs and Professor of Literature and Gender Studies</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/haseena-khan.jpg" alt="Dr. Haseena Khan" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Dr. Haseena Khan</h3>
+              <div class="committee-role">University Professor</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/mohiuddin-chowdhury.jpg" alt="Dr. Mohiuddin A. K. Chowdhury" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Dr. Mohiuddin A. K. Chowdhury</h3>
+              <div class="committee-role">Associate Professor of Public Health; Takeda Chair; Associate Dean of Academic Affairs (Natural Sciences); Programme Director of Public Health</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/zarina-hossain.jpg" alt="Ms. Zarina Hossain" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Ms. Zarina Hossain</h3>
+              <div class="committee-role">Architect - Urban Planner<br>Professor of Practice of Service Learning and Director of Service Learning Center</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/tuhin-biswas.jpg" alt="Dr. Tuhin Biswas" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Dr. Tuhin Biswas</h3>
+              <div class="committee-role">Assistant Professor of Public Health</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/suparna-das.jpg" alt="Dr. Suparna Das" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Dr. Suparna Das</h3>
+              <div class="committee-role">Associate Professor of Economics; Associate Dean of Social Sciences; and Program Director of PPE</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/ayan-saha.jpg" alt="Dr. Ayan Saha" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Dr. Ayan Saha</h3>
+              <div class="committee-role">Assistant Professor of Bioinformatics & Joint Programme Director for Biological Sciences</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/ayan-roy.jpg" alt="Dr. Ayan Roy" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Dr. Ayan Roy</h3>
+              <div class="committee-role">Assistant Professor of Bioinformatics & Joint Programme Director for Biological Sciences</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+
+            <article class="committee-card reveal-card">
+              <div class="committee-photo">
+                <img src="images/committee/tapu-chowdhury.jpg" alt="Mrs. Tapu Chowdhury" onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=&quot;fa-solid fa-user&quot;></i>';">
+              </div>
+              <h3>Mrs. Tapu Chowdhury</h3>
+              <div class="committee-role">Interim Deputy Registrar (External Affairs)</div>
+              <div class="committee-org">Asian University for Women, Bangladesh</div>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="sponsor-section">
       <div class="container">
-        <div class="sponsor-card">
+        <div class="sponsor-card reveal-card">
           <h2>Sponsors & Co-organisers</h2>
           <p>Current partners and supporting organisations for ICECA 2026.</p>
 
@@ -585,7 +1012,12 @@
             </div>
 
             <div class="sponsor-item">
-              <img src="images/envs-logo.png" alt="Environmental Sciences Program Logo" class="sponsor-logo">
+              <img src="images/sponsors/kfl-logo.png" alt="KFL Logo" class="sponsor-logo">
+              <div class="sponsor-name">KFL</div>
+            </div>
+
+            <div class="sponsor-item">
+              <img src="images/envsp-logo.png" alt="Environmental Sciences Program Logo" class="sponsor-logo">
               <div class="sponsor-name">Environmental Sciences Program</div>
             </div>
 
@@ -605,6 +1037,7 @@
         <h2>ICECA 2026</h2>
         <p>2nd International Conference on Environment and Climate Action 2026.</p>
       </div>
+
       <div>
         <h3>Quick Links</h3>
         <div class="footer-links">
@@ -613,6 +1046,7 @@
           <a href="index.html#submission">Submission</a>
         </div>
       </div>
+
       <div>
         <h3>Contact</h3>
         <p><i class="fa-regular fa-envelope"></i> ICECA@auw.edu.bd</p>
@@ -633,6 +1067,22 @@
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
       });
+    });
+
+    const revealCards = document.querySelectorAll('.reveal-card');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    revealCards.forEach((card) => {
+      revealObserver.observe(card);
     });
   </script>
 </body>
